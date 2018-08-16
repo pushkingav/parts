@@ -17,7 +17,7 @@ public class NoteServiceImpl implements NoteService {
 
   @Override
   public Note findById(int id) {
-    return repository.findOne(id);
+    return repository.findById(id);
   }
 
   @Override

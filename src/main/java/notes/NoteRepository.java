@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface NoteRepository extends Repository<Note, Integer>  {
   void delete(Note note);
-  List findAll();
-  Note findOne(int id);
+  List<Note> findAll();
+  Note findById(int id);
   Note save(Note note);
 }
