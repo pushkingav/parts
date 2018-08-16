@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col-md-6">
+  <h2 class="text-center">Add Note</h2>
+  <form>
+    <div class="form-group">
+      <label for="title">Email address:</label>
+      <input type="title" [(ngModel)]="note.title" placeholder="Title" name="title" class="form-control" id="title">
+    </div>
+
+    <div class="form-group">
+      <label for="text">Note Text:</label>
+      <input [(ngModel)]="note.text" placeholder="Note Text" name="text" class="form-control" id="text">
+    </div>
+
+    <div class="form-group">
+      <label for="dateCreated">Date Created</label>
+      <input [(ngModel)]="note.dateCreated" placeholder="Date Created" name="dateCreated" class="form-control" id="dateCreated">
+    </div>
+
+    <button class="btn btn-success" (click)="createNote()">Create</button>
+  </form>
+</div>
+</body>
+</html>

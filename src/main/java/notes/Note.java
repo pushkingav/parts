@@ -1,15 +1,24 @@
 package notes;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 
+@Entity
+@Table(name = "notes")
 public class Note {
-    private String name;
-    private String text;
-    private Date dateCreated;
-    private int id;
+  @Id
+  @Column
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
+  @Column
+  private String name;
+  @Column
+  private String text;
+  @Column
+  private Date dateCreated;
 
-    public Note(String name, String text, Date dateCreated, int id) {
+    public Note(String name, String text, Date dateCreated, Integer id) {
       this.name = name;
       this.text = text;
       this.dateCreated = dateCreated;

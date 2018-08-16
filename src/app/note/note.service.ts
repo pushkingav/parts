@@ -13,7 +13,7 @@ export class NoteService {
 
   constructor(private http:HttpClient) {}
 
-  //private userUrl = 'http://localhost:8080/user-portal/user';
+  // private userUrl = 'http://localhost:8080/user-portal/user';
   private noteUrl = '/api';
 
   public getNotes() {

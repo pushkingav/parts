@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class NotesServiceImpl implements NotesService {
+public class NoteServiceImpl implements NoteService {
   @Autowired
-  private NotesRepository repository;
+  private NoteRepository repository;
 
   @Override
   public Note create(Note note) {
