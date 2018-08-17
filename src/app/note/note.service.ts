@@ -11,7 +11,7 @@ const httpOptions = {
 @Injectable()
 export class NoteService {
 
-  constructor(private http:HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   // private userUrl = 'http://localhost:8080/user-portal/user';
   private noteUrl = '/api';
