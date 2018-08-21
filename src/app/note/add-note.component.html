@@ -9,18 +9,18 @@
   <h2 class="text-center">Add Note</h2>
   <form>
     <div class="form-group">
-      <label for="title">Email address:</label>
-      <input type="title" [(ngModel)]="note.title" placeholder="Title" name="title" class="form-control" id="title">
+      <label for="title">Note Title:</label>
+      <input name="title" [(ngModel)]="note.title" placeholder="Title" title="title" class="form-control" id="title">
     </div>
 
     <div class="form-group">
       <label for="text">Note Text:</label>
-      <input [(ngModel)]="note.text" placeholder="Note Text" name="text" class="form-control" id="text">
+      <input name = "text" [(ngModel)]="note.text" placeholder="Note Text" title="text" class="form-control" id="text">
     </div>
 
     <div class="form-group">
       <label for="dateCreated">Date Created</label>
-      <input [(ngModel)]="note.dateCreated" placeholder="Date Created" name="dateCreated" class="form-control" id="dateCreated">
+      <input name = "dateCreated" [(ngModel)]="note.dateCreated" placeholder="Date Created" title="dateCreated" class="form-control" id="dateCreated">
     </div>
 
     <button class="btn btn-success" (click)="createNote()">Create</button>

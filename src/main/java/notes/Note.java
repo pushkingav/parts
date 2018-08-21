@@ -12,14 +12,14 @@ public class Note {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
   @Column
-  private String name;
+  private String title;
   @Column
   private String text;
   @Column
   private Date dateCreated;
 
-    public Note(String name, String text, Date dateCreated, Integer id) {
-      this.name = name;
+    public Note(String title, String text, Date dateCreated, Integer id) {
+      this.title = title;
       this.text = text;
       this.dateCreated = dateCreated;
       this.id = id;
@@ -52,12 +52,12 @@ public class Note {
       this.id = id;
     }
 
-  public String getName() {
-    return name;
+  public String getTitle() {
+    return title;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setTitle(String title) {
+    this.title = title;
   }
 
   @Override
