@@ -7,15 +7,15 @@
       <th class="hidden">Id</th>
       <th>Title</th>
       <th>Text</th>
-      <th>Date Created</th>
+      <th>DateCreated</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let note of notes">
-      <td class="hidden"></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td class="hidden">{{note.id}}</td>
+      <td>{{note.title}}</td>
+      <td>{{note.text}}</td>
+      <td>{{note.dateCreated}}</td>
       <td><button class="btn btn-danger" (click)="deleteNote(note)"> Delete Note</button></td>
     </tr>
     </tbody>
