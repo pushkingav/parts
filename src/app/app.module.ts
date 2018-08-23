@@ -8,6 +8,7 @@ import {AppRoutingModule} from './app.routing.module';
 import {NoteService} from './note/note.service';
 import {HttpClientModule} from '@angular/common/http';
 import {AddNoteComponent} from './note/add-note.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {AddNoteComponent} from './note/add-note.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [NoteService],
   bootstrap: [AppComponent]
