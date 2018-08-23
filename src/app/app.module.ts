@@ -9,12 +9,14 @@ import {NoteService} from './note/note.service';
 import {HttpClientModule} from '@angular/common/http';
 import {AddNoteComponent} from './note/add-note.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {TableListComponent} from './table-list/table-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NoteComponent,
-    AddNoteComponent
+    AddNoteComponent,
+    TableListComponent
   ],
   imports: [
     BrowserModule,
