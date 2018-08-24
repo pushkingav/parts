@@ -22,8 +22,7 @@ public class NoteServiceImpl implements NoteService {
 
   @Override
   public Note update(Note note) {
-    //TODO - add implementation
-    return null;
+    return repository.save(note);
   }
 
   @Override

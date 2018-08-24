@@ -17,12 +17,15 @@ public class Note {
   private String text;
   @Column
   private Date dateCreated;
+  @Column
+  private boolean done;
 
-    public Note(String title, String text, Date dateCreated, Integer id) {
+    public Note(String title, String text, Date dateCreated, Integer id, boolean done) {
       this.title = title;
       this.text = text;
       this.dateCreated = dateCreated;
       this.id = id;
+      this.done = done;
     }
 
     public Note() {
@@ -58,6 +61,14 @@ public class Note {
 
   public void setTitle(String title) {
     this.title = title;
+  }
+
+  public boolean isDone() {
+    return done;
+  }
+
+  public void setDone(boolean done) {
+    this.done = done;
   }
 
   @Override

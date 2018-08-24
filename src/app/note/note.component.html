@@ -1,23 +1,26 @@
-<div class="col-md-6">
-  <h2> Note Details</h2>
-
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th class="hidden">Id</th>
-      <th>Title</th>
-      <th>Text</th>
-      <th>DateCreated</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let note of notes">
-      <td class="hidden">{{note.id}}</td>
-      <td>{{note.title}}</td>
-      <td>{{note.text}}</td>
-      <td>{{note.dateCreated}}</td>
-      <td><button class="btn btn-danger" (click)="deleteNote(note)"> Delete Note</button></td>
-    </tr>
-    </tbody>
-  </table>
+<div class="row">
+  <div class="col-md-4">
+    <input *ngIf="config.filtering" placeholder="Filter all columns"
+           [ngTableFiltering]="config.filtering"
+           class="form-control"
+           (tableChanged)="onChangeTable(config)"/>
+  </div>
 </div>
+<br>
+<ng-table [config]="config"
+          (tableChanged)="onChangeTable(config)"
+          (cellClicked)="onCellClick($event)"
+          [rows]="rows" [columns]="columns">
+</ng-table>
+<pagination *ngIf="config.paging"
+            class="pagination-sm"
+            [(ngModel)]="page"
+            [totalItems]="length"
+            [itemsPerPage]="itemsPerPage"
+            [maxSize]="maxSize"
+            [boundaryLinks]="true"
+            [rotate]="false"
+            (pageChanged)="onChangeTable(config, $event)"
+            (numPages)="numPages = $event">
+</pagination>
+<pre *ngIf="config.paging" class="card card-block card-header">Page: {{page}} / {{numPages}}</pre>
