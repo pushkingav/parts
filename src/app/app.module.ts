@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {AppComponent} from './app.component';
 import {NoteComponent} from './note/note.component';
@@ -10,15 +10,22 @@ import {HttpClientModule} from '@angular/common/http';
 import {AddNoteComponent} from './note/add-note.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TableListComponent} from './table-list/table-list.component';
-import {Ng2TableModule} from 'ng2-table/ng2-table';
 import {PaginationModule} from 'ngx-bootstrap';
+import {
+  MatCheckboxModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatProgressSpinnerModule,
+  MatSortModule,
+  MatTableModule
+} from '@angular/material';
 
 @NgModule({
   declarations: [
     AppComponent,
     NoteComponent,
     AddNoteComponent,
-    TableListComponent
+    TableListComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +33,13 @@ import {PaginationModule} from 'ngx-bootstrap';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    Ng2TableModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
+    MatSortModule,
+    MatTableModule,
+    MatProgressSpinnerModule,
+    MatPaginatorModule,
+    MatCheckboxModule,
     PaginationModule.forRoot()
   ],
   providers: [NoteService],

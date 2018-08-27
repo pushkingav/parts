@@ -1,150 +1,71 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {Note} from '../models/note.model';
 import {NoteService} from './note.service';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {merge, Observable, of as observableOf} from 'rxjs';
+import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-note',
   templateUrl: './note.component.html',
   styleUrls: ['./note.component.css']
 })
-export class NoteComponent implements OnInit {
+export class NoteComponent implements AfterViewInit {
   notes: Note[];
-  public rows: Array<Note> = [];
-  public columns: Array<any> = [
-    {title: 'Id', name: 'id'},
-    {
-      title: 'Title',
-      name: 'title',
-      sort: false,
-      filtering: {filterString: '', placeholder: 'Filter by title'}
-    },
-    {title: 'Text', className: ['office-header', 'text-success'], name: 'text', sort: 'asc'},
-    {title: 'Created date', className: 'text-warning', name: 'dateCreated'},
-    {title: 'Done', name: 'done'}
-  ];
-  public page = 1;
-  public itemsPerPage = 10;
-  public maxSize = 5;
-  public numPages = 1;
-  public length = 10;
+  displayedColumns = ['done', 'id', 'title', 'text', 'date_created'];
+  exampleDatabase: ExampleHttpDao | null;
+  dataSource = new MatTableDataSource();
+  resultsLength = 0;
+  isLoadingResults = false;
+  isRateLimitReached = false;
 
-  public config: any = {
-    paging: true,
-    sorting: {columns: this.columns},
-    filtering: {filterString: ''},
-    className: ['table-striped', 'table-bordered']
-  };
-  private data: Note[];
-  constructor(private router: Router, private noteService: NoteService ) {
-    this.length = 10; // this.notes.length;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+  constructor(private noteService: NoteService) {
   }
-  ngOnInit() {
+
+  /*ngOnInit() {
     this.noteService.getNotes()
       .subscribe( data => {
         this.notes = data;
-        this.data = data;
-        console.log(this.data);
-        this.onChangeTable(this.config);
       });
+  }*/
+  setDone(note: Note) {
+    this.noteService.createNote(note);
   }
-  deleteNote(note: Note): void {
-    this.noteService.deleteNote(note)
-      .subscribe( data => {
-        this.notes = this.notes.filter(n => n !== note);
-      });
+  ngAfterViewInit() {
+    this.exampleDatabase = new ExampleHttpDao(this.noteService);
+
+    // If the user changes the sort order, reset back to the first page.
+    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+    this.dataSource.paginator = this.paginator;
+
+    merge(this.sort.sortChange)
+      .pipe(
+        startWith({}),
+        switchMap(() => {
+          this.isLoadingResults = true;
+          return this.exampleDatabase.getRepoIssues();
+        }),
+        map(data => {
+          // Flip flag to show that loading has finished.
+          this.isLoadingResults = false;
+          this.resultsLength = data.length;
+          console.log(data);
+          return data;
+        }),
+        catchError(() => {
+          this.isLoadingResults = false;
+          return observableOf([]);
+        })
+      ).subscribe(data => this.dataSource.data = data);
   }
-  public changePage(page: any, data: Array<any> = this.data): Array<any> {
-    const start = (page.page - 1) * page.itemsPerPage;
-    const end = page.itemsPerPage > -1 ? (start + page.itemsPerPage) : data.length;
-    return data.slice(start, end);
-  }
+}
 
-  public changeSort(data: any, config: any): any {
-    if (!config.sorting) {
-      return data;
-    }
-
-    const columns = this.config.sorting.columns || [];
-    let columnName: string = void 0;
-    let sort: string = void 0;
-
-    for (let i = 0; i < columns.length; i++) {
-      if (columns[i].sort !== '' && columns[i].sort !== false) {
-        columnName = columns[i].name;
-        sort = columns[i].sort;
-      }
-    }
-
-    if (!columnName) {
-      return data;
-    }
-
-    // simple sorting
-    return data.sort((previous: any, current: any) => {
-      if (previous[columnName] > current[columnName]) {
-        return sort === 'desc' ? -1 : 1;
-      } else if (previous[columnName] < current[columnName]) {
-        return sort === 'asc' ? -1 : 1;
-      }
-      return 0;
-    });
-  }
-
-  public changeFilter(data: any, config: any): any {
-    let filteredData: Array<any> = data;
-    this.columns.forEach((column: any) => {
-      if (column.filtering) {
-        filteredData = filteredData.filter((item: any) => {
-          console.log(item[column.name]);
-          return item[column.name].match(column.filtering.filterString);
-        });
-      }
-    });
-
-    if (!config.filtering) {
-      return filteredData;
-    }
-
-    if (config.filtering.columnName) {
-      return filteredData.filter((item: any) =>
-        item[config.filtering.columnName].match(this.config.filtering.filterString));
-    }
-
-    const tempArray: Array<any> = [];
-    filteredData.forEach((item: any) => {
-      let flag = false;
-      this.columns.forEach((column: any) => {
-        if (item[column.name].toString().match(this.config.filtering.filterString)) {
-          flag = true;
-        }
-      });
-      if (flag) {
-        tempArray.push(item);
-      }
-    });
-    filteredData = tempArray;
-
-    return filteredData;
-  }
-
-  public onChangeTable(config: any, page: any = {page: this.page, itemsPerPage: this.itemsPerPage}): any {
-    if (config.filtering) {
-      Object.assign(this.config.filtering, config.filtering);
-    }
-
-    if (config.sorting) {
-      Object.assign(this.config.sorting, config.sorting);
-    }
-
-    const filteredData = this.changeFilter(this.data, this.config);
-    const sortedData = this.changeSort(filteredData, this.config);
-    this.rows = page && config.paging ? this.changePage(page, sortedData) : sortedData;
-    this.length = sortedData.length;
-  }
-
-  public onCellClick(data: any): any {
-    console.log(data);
+export class ExampleHttpDao {
+  constructor(private noteService: NoteService) {}
+  getRepoIssues(): Observable<Note[]> {
+    return this.noteService.getNotes();
   }
 }
