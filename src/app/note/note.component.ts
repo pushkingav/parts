@@ -12,12 +12,11 @@ import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 })
 export class NoteComponent implements AfterViewInit {
   notes: Note[];
-  displayedColumns = ['done', 'id', 'title', 'text', 'date_created'];
-  exampleDatabase: ExampleHttpDao | null;
+  displayedColumns = ['done', 'id', 'title', 'text', 'date_created', 'actions'];
+  exampleDatabase: NotesHttpDao | null;
   dataSource = new MatTableDataSource();
   resultsLength = 0;
   isLoadingResults = false;
-  isRateLimitReached = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -34,8 +33,17 @@ export class NoteComponent implements AfterViewInit {
   setDone(note: Note) {
     this.noteService.createNote(note);
   }
+  deleteNote(note: Note): void {
+    this.noteService.deleteNote(note)
+      .subscribe( data => {
+        this.dataSource.data = this.dataSource.data.filter(u => u !== note);
+      });
+  }
+  editNote(note: Note): void {
+    this.noteService.editNote(note);
+  }
   ngAfterViewInit() {
-    this.exampleDatabase = new ExampleHttpDao(this.noteService);
+    this.exampleDatabase = new NotesHttpDao(this.noteService);
 
     // If the user changes the sort order, reset back to the first page.
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
@@ -52,7 +60,6 @@ export class NoteComponent implements AfterViewInit {
           // Flip flag to show that loading has finished.
           this.isLoadingResults = false;
           this.resultsLength = data.length;
-          console.log(data);
           return data;
         }),
         catchError(() => {
@@ -63,7 +70,7 @@ export class NoteComponent implements AfterViewInit {
   }
 }
 
-export class ExampleHttpDao {
+export class NotesHttpDao {
   constructor(private noteService: NoteService) {}
   getRepoIssues(): Observable<Note[]> {
     return this.noteService.getNotes();

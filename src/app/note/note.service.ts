@@ -28,4 +28,8 @@ export class NoteService {
     return this.http.post<Note>(this.noteUrl, note);
   }
 
+  public editNote(note) {
+    return this.http.post<Note>(this.noteUrl, note);
+  }
+
 }

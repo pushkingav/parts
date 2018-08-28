@@ -12,13 +12,16 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TableListComponent} from './table-list/table-list.component';
 import {PaginationModule} from 'ngx-bootstrap';
 import {
+  MatCardModule,
   MatCheckboxModule,
+  MatFormFieldModule,
   MatNativeDateModule,
   MatPaginatorModule,
   MatProgressSpinnerModule,
   MatSortModule,
   MatTableModule
 } from '@angular/material';
+import {EditNoteComponent} from './note/edit-note.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,7 @@ import {
     NoteComponent,
     AddNoteComponent,
     TableListComponent,
+    EditNoteComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +44,8 @@ import {
     MatProgressSpinnerModule,
     MatPaginatorModule,
     MatCheckboxModule,
+    MatCardModule,
+    MatFormFieldModule,
     PaginationModule.forRoot()
   ],
   providers: [NoteService],
