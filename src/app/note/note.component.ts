@@ -1,9 +1,10 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {Note} from '../models/note.model';
 import {NoteService} from './note.service';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatDialog, MatDialogConfig, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {merge, Observable, of as observableOf} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
+import {EditNoteDialogComponent} from './edit-note-dialog.component';
 
 @Component({
   selector: 'app-note',
@@ -12,7 +13,7 @@ import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 })
 export class NoteComponent implements AfterViewInit {
   notes: Note[];
-  displayedColumns = ['done', 'id', 'title', 'text', 'date_created', 'actions'];
+  displayedColumns = ['done', 'title', 'text', 'date_created', 'actions'];
   exampleDatabase: NotesHttpDao | null;
   dataSource = new MatTableDataSource();
   resultsLength = 0;
@@ -21,7 +22,18 @@ export class NoteComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private noteService: NoteService) {
+  constructor(private noteService: NoteService, private dialog: MatDialog) {
+  }
+  openDialog(note: Note) {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.hasBackdrop = true;
+    dialogConfig.data = note;
+
+    this.dialog.open(EditNoteDialogComponent, dialogConfig);
   }
 
   /*ngOnInit() {
@@ -40,7 +52,9 @@ export class NoteComponent implements AfterViewInit {
       });
   }
   editNote(note: Note): void {
-    this.noteService.editNote(note);
+    console.log(note);
+    // this.noteService.changeNote(note);
+    this.openDialog(note);
   }
   ngAfterViewInit() {
     this.exampleDatabase = new NotesHttpDao(this.noteService);

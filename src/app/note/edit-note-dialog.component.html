@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Edit Note - {{note.title}}</h2>
+
+<mat-dialog-content [formGroup]="form">
+
+  <mat-form-field>
+    <input matInput
+           placeholder="Text"
+           formControlName="text">
+  </mat-form-field>
+  <ng-container matColumnDef="title">
+    <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
+    <mat-cell >{{ note.title }}</mat-cell>
+  </ng-container>
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="mat-raised-button"(click)="close()">Close</button>
+  <button class="mat-raised-button mat-primary"(click)="save()">Save</button>
+</mat-dialog-actions>

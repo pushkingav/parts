@@ -14,7 +14,9 @@ import {PaginationModule} from 'ngx-bootstrap';
 import {
   MatCardModule,
   MatCheckboxModule,
+  MatDialogModule,
   MatFormFieldModule,
+  MatInputModule,
   MatNativeDateModule,
   MatPaginatorModule,
   MatProgressSpinnerModule,
@@ -22,6 +24,7 @@ import {
   MatTableModule
 } from '@angular/material';
 import {EditNoteComponent} from './note/edit-note.component';
+import {EditNoteDialogComponent} from './note/edit-note-dialog.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,8 @@ import {EditNoteComponent} from './note/edit-note.component';
     NoteComponent,
     AddNoteComponent,
     TableListComponent,
-    EditNoteComponent
+    EditNoteComponent,
+    EditNoteDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -46,9 +50,12 @@ import {EditNoteComponent} from './note/edit-note.component';
     MatCheckboxModule,
     MatCardModule,
     MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule,
     PaginationModule.forRoot()
   ],
   providers: [NoteService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [EditNoteDialogComponent]
 })
 export class AppModule { }

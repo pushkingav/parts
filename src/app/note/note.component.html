@@ -10,12 +10,6 @@
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
 
-    <!-- Number Column -->
-    <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
-    </ng-container>
-
     <!-- Title Column -->
     <ng-container matColumnDef="title">
       <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
@@ -25,7 +19,12 @@
     <!-- Text Column -->
     <ng-container matColumnDef="text">
       <mat-header-cell *matHeaderCellDef>Text</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.text }}</mat-cell>
+
+      <mat-cell *matCellDef="let row">
+        <mat-form-field floatLabel="never">
+          <textarea matInput placeholder="Text" [value]="row.text" [(ngModel)]="row.text"></textarea>
+        </mat-form-field>
+      </mat-cell>
     </ng-container>
 
     <!-- Created Column -->
@@ -35,7 +34,7 @@
                        disableClear="true">
         Created Date
       </mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.date_created }}</mat-cell>
+      <mat-cell *matCellDef="let row">{{ row.created_date }}</mat-cell>
     </ng-container>
 
     <!-- Done Column -->

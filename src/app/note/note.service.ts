@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable, Output} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 import {Note} from '../models/note.model';
@@ -10,11 +10,16 @@ const httpOptions = {
 
 @Injectable()
 export class NoteService {
+ @Output() changeNoteEmitter: EventEmitter<Note> = new EventEmitter();
 
   constructor(private http: HttpClient) {}
-
   // private userUrl = 'http://localhost:8080/user-portal/user';
   private noteUrl = '/api';
+
+  public changeNote(note: Note) {
+    console.log(note);
+    this.changeNoteEmitter.emit(note);
+  }
 
   public getNotes() {
     return this.http.get<Note[]>(this.noteUrl);
