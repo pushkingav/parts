@@ -16,10 +16,10 @@ export class AddNoteComponent {
   }
 
   createNote(): void {
+    this.note.dateCreated = new Date();
     this.noteService.createNote(this.note)
       .subscribe( data => {
         alert('Note created successfully.');
       });
-
   }
 }

@@ -16,6 +16,7 @@ public class Note {
   @Column
   private String text;
   @Column
+  //@JsonDeserialize(using = AndrewDateTimeDeserialize.class)
   private Date dateCreated;
   @Column
   private boolean done;
