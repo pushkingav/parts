@@ -8,51 +8,47 @@
              matSort matSortActive="id" matSortDisableClear matSortDirection="asc">
 
     <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
+          The actual rendered columns are set as a property on the note definition" -->
 
     <!-- Title Column -->
     <ng-container matColumnDef="title">
       <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.title }}</mat-cell>
+      <mat-cell *matCellDef="let note">{{ note.title }}</mat-cell>
     </ng-container>
 
     <!-- Text Column -->
     <ng-container matColumnDef="text">
       <mat-header-cell *matHeaderCellDef>Text</mat-header-cell>
 
-      <mat-cell *matCellDef="let row">
-        <mat-form-field floatLabel="never">
-          <textarea matInput placeholder="Text" [value]="row.text" [(ngModel)]="row.text"></textarea>
-        </mat-form-field>
+      <mat-cell *matCellDef="let note">{{ note.text }}
+        <!--mat-form-field floatLabel="never">
+          <textarea matInput placeholder="Text" [value]="note.text" [(ngModel)]="note.text"></textarea>
+        </mat-form-field-->
       </mat-cell>
     </ng-container>
 
     <!-- Created Column -->
     <ng-container matColumnDef="date_created">
-      <mat-header-cell *matHeaderCellDef
-                       mat-sort-header
-                       disableClear="true">
-        Created Date
-      </mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.created_date }}</mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Created Date</mat-header-cell>
+      <mat-cell *matCellDef="let note">{{ note.dateCreated}}</mat-cell>
     </ng-container>
 
     <!-- Done Column -->
     <ng-container matColumnDef="done">
       <mat-header-cell *matHeaderCellDef>Done</mat-header-cell>
-      <mat-cell *matCellDef="let row">
+      <mat-cell *matCellDef="let note">
         <mat-checkbox (click)="$event.stopPropagation()"
-                      (change)="setDone(row)"
-                      [checked]="row.done">
+                      (change)="setDone(note)"
+                      [checked]="note.done">
         </mat-checkbox>
       </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
-      <mat-cell *matCellDef="let row">
-        <button mat-raised-button class="btn btn-danger btn-sm" (click)="deleteNote(row)">Delete</button>
-        <button mat-raised-button class="btn btn-success btn-sm" (click)="editNote(row)" routerLink="/edit">Edit</button>
+      <mat-cell *matCellDef="let note">
+        <button mat-raised-button class="btn btn-danger btn-sm" (click)="deleteNote(note)">Delete</button>
+        <button mat-raised-button class="btn btn-success btn-sm" (click)="openDialog(note)">Edit</button>
       </mat-cell>
     </ng-container>
 

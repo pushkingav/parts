@@ -10,11 +10,19 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 export class EditNoteDialogComponent implements OnInit {
   note: Note;
   form: FormGroup;
+  title: string;
+  text: string;
+
   constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<EditNoteDialogComponent>, @Inject(MAT_DIALOG_DATA) data) {
     this.note = data;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.form = this.fb.group({
+      title: [this.note.title, []],
+      text: [this.note.text, []]
+    });
+  }
 
   save() {
     this.dialogRef.close(this.form.value);

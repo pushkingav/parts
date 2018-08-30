@@ -1,18 +1,12 @@
 <h2 mat-dialog-title>Edit Note - {{note.title}}</h2>
 
 <mat-dialog-content [formGroup]="form">
-
   <mat-form-field>
-    <input matInput
-           placeholder="Text"
-           formControlName="text">
+    <input matInput placeholder="Title" formControlName="title">
   </mat-form-field>
-  <ng-container matColumnDef="title">
-    <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
-    <mat-cell >{{ note.title }}</mat-cell>
-  </ng-container>
-
-
+  <mat-form-field>
+    <textarea matInput placeholder="Text" formControlName="text"></textarea>
+  </mat-form-field>
 </mat-dialog-content>
 
 <mat-dialog-actions>

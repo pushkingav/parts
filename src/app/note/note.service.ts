@@ -34,7 +34,7 @@ export class NoteService {
   }
 
   public editNote(note) {
-    return this.http.post<Note>(this.noteUrl, note);
+    return this.http.put<Note>(this.noteUrl, note);
   }
 
 }

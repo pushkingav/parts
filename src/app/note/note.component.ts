@@ -25,7 +25,6 @@ export class NoteComponent implements AfterViewInit {
   constructor(private noteService: NoteService, private dialog: MatDialog) {
   }
   openDialog(note: Note) {
-
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;
@@ -33,7 +32,12 @@ export class NoteComponent implements AfterViewInit {
     dialogConfig.hasBackdrop = true;
     dialogConfig.data = note;
 
-    this.dialog.open(EditNoteDialogComponent, dialogConfig);
+    const dialogRef = this.dialog.open(EditNoteDialogComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(changedNote => {
+     note.title = changedNote.title;
+     note.text = changedNote.text;
+     this.noteService.editNote(note).subscribe();
+     });
   }
 
   /*ngOnInit() {
@@ -43,18 +47,14 @@ export class NoteComponent implements AfterViewInit {
       });
   }*/
   setDone(note: Note) {
-    this.noteService.createNote(note);
+    note.done = !note.done;
+    this.noteService.editNote(note).subscribe();
   }
   deleteNote(note: Note): void {
     this.noteService.deleteNote(note)
       .subscribe( data => {
         this.dataSource.data = this.dataSource.data.filter(u => u !== note);
       });
-  }
-  editNote(note: Note): void {
-    console.log(note);
-    // this.noteService.changeNote(note);
-    this.openDialog(note);
   }
   ngAfterViewInit() {
     this.exampleDatabase = new NotesHttpDao(this.noteService);
@@ -68,7 +68,7 @@ export class NoteComponent implements AfterViewInit {
         startWith({}),
         switchMap(() => {
           this.isLoadingResults = true;
-          return this.exampleDatabase.getRepoIssues();
+          return this.exampleDatabase.getRepoNotes();
         }),
         map(data => {
           // Flip flag to show that loading has finished.
@@ -86,7 +86,7 @@ export class NoteComponent implements AfterViewInit {
 
 export class NotesHttpDao {
   constructor(private noteService: NoteService) {}
-  getRepoIssues(): Observable<Note[]> {
+  getRepoNotes(): Observable<Note[]> {
     return this.noteService.getNotes();
   }
 }
