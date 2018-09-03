@@ -5,9 +5,12 @@
   </div>
 
   <mat-table #table [dataSource]="dataSource" class="example-table"
-             matSort matSortActive="id" matSortDisableClear matSortDirection="asc">
+             matSort>
 
-    <!--- Note that these columns can be defined in any order.
+    <!---     https://github.com/angular/material2/issues/10150
+
+              matSortActive="id" matSortDirection="asc"
+    Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the note definition" -->
 
     <!-- Title Column -->
@@ -30,7 +33,7 @@
     <!-- Created Column -->
     <ng-container matColumnDef="date_created">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Created Date</mat-header-cell>
-      <mat-cell *matCellDef="let note">{{ note.dateCreated}}</mat-cell>
+      <mat-cell *matCellDef="let note">{{ note.dateCreated }}</mat-cell>
     </ng-container>
 
     <!-- Done Column -->

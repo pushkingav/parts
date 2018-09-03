@@ -1,5 +1,7 @@
 package notes;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
@@ -16,7 +18,7 @@ public class Note {
   @Column
   private String text;
   @Column
-  //@JsonDeserialize(using = AndrewDateTimeDeserialize.class)
+  @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
   private Date dateCreated;
   @Column
   private boolean done;

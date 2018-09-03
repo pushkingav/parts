@@ -62,8 +62,9 @@ export class NoteComponent implements AfterViewInit {
     // If the user changes the sort order, reset back to the first page.
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
 
-    merge(this.sort.sortChange)
+    merge()
       .pipe(
         startWith({}),
         switchMap(() => {
