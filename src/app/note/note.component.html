@@ -31,7 +31,16 @@
 
     <!-- Done Column -->
     <ng-container matColumnDef="done">
-      <mat-header-cell *matHeaderCellDef>Done</mat-header-cell>
+
+      <mat-header-cell *matHeaderCellDef>
+        <mat-form-field>
+          <mat-select [value]="1" placeholder="Фильтровать заметки:">
+            <mat-option [value]=1>Все заметки</mat-option>
+            <mat-option [value]=2>Выполненные</mat-option>
+            <mat-option [value]=3>Не выполненные</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-header-cell>
       <mat-cell *matCellDef="let note">
         <mat-checkbox (click)="$event.stopPropagation()"
                       (change)="setDone(note)"

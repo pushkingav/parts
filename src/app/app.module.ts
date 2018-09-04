@@ -20,6 +20,7 @@ import {
   MatNativeDateModule,
   MatPaginatorModule,
   MatProgressSpinnerModule,
+  MatSelectModule,
   MatSortModule,
   MatTableModule
 } from '@angular/material';
@@ -52,6 +53,7 @@ import {EditNoteDialogComponent} from './note/edit-note-dialog.component';
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
+    MatSelectModule,
     PaginationModule.forRoot()
   ],
   providers: [NoteService],
