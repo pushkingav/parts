@@ -14,7 +14,7 @@ import {EditNoteDialogComponent} from './edit-note-dialog.component';
 export class NoteComponent implements AfterViewInit {
   notes: Note[];
   displayedColumns = ['done', 'title', 'text', 'date_created', 'actions'];
-  exampleDatabase: NotesHttpDao | null;
+  notesDatabase: NotesHttpDao | null;
   dataSource = new MatTableDataSource();
   resultsLength = 0;
   isLoadingResults = false;
@@ -57,19 +57,25 @@ export class NoteComponent implements AfterViewInit {
       });
   }
   ngAfterViewInit() {
-    this.exampleDatabase = new NotesHttpDao(this.noteService);
+    this.notesDatabase = new NotesHttpDao(this.noteService);
 
     // If the user changes the sort order, reset back to the first page.
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.dataSource.sortingDataAccessor = (note: Note, property) => {
+      switch (property) {
+        case 'date_created': return new Date(note.dateCreated);
+        default: return note[property];
+      }
+    };
 
     merge()
       .pipe(
         startWith({}),
         switchMap(() => {
           this.isLoadingResults = true;
-          return this.exampleDatabase.getRepoNotes();
+          return this.notesDatabase.getRepoNotes();
         }),
         map(data => {
           // Flip flag to show that loading has finished.

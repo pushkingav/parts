@@ -18,7 +18,7 @@ public class Note {
   @Column
   private String text;
   @Column
-  @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
+  @JsonFormat(shape=JsonFormat.Shape.NUMBER, pattern="yyyy-MM-dd")
   private Date dateCreated;
   @Column
   private boolean done;
