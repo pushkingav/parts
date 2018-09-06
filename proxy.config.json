@@ -1,6 +1,6 @@
 {
   "/api/*": {
-    "target": "http://localhost:8080/notes",
+    "target": "http://localhost:8080/parts",
     "secure": false
   }
 }

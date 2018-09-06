@@ -1,16 +1,16 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {NoteComponent} from './note/note.component';
+import {PartComponent} from './part/part.component';
 import {TableListComponent} from './table-list/table-list.component';
-import {AddNoteComponent} from './note/add-note.component';
-import {EditNoteComponent} from './note/edit-note.component';
+import {AddPartComponent} from './part/add-part.component';
+import {EditPartComponent} from './part/edit-part.component';
 
 const routes: Routes = [
-  { path: 'notes', component: NoteComponent },
+  { path: 'parts', component: PartComponent },
   { path: 'table', component: TableListComponent},
-  { path: 'add', component: AddNoteComponent },
-  { path: 'edit', component: EditNoteComponent}
+  { path: 'add', component: AddPartComponent },
+  { path: 'edit', component: EditPartComponent}
 ];
 
 @NgModule({

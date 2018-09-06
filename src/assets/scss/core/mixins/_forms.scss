@@ -216,7 +216,7 @@
   //   // Create a space at the top of the bmd-form-group for the label.
   //   //  The label is absolutely positioned, so we use top padding to make space.  This padding extends over the label down to the top of the input (padding).
   //   padding-top: ($label-top-margin + $static-font-size);
-  //   // note: bottom-margin of this is determined by $spacer.  @see _spacer.scss
+  //   // part: bottom-margin of this is determined by $spacer.  @see _spacer.scss
   //   //margin-bottom: (1.5 * $help-font-size);
   // }
 
@@ -254,7 +254,7 @@
     line-height: $line-height-base; // keep the same line height for radios and checkboxes
   }
 
-  // Note: this may be inside or outside a form-group, may be .bmd-form-group.bmd-form-group-sm or .bmd-form-group.bmd-form-group-lg
+  // Part: this may be inside or outside a form-group, may be .bmd-form-group.bmd-form-group-sm or .bmd-form-group.bmd-form-group-lg
   // input::placeholder {
   //   font-size: $font-size;
   // }

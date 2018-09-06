@@ -48,7 +48,7 @@ import 'core-js/es7/reflect';
 
 /**
  * Web Animations `@angular/platform-browser/animations`
- * Only required if AnimationBuilder is used within the application and using IE/Edge or Safari.
+ * Only iRequired if AnimationBuilder is used within the application and using IE/Edge or Safari.
  * Standard animation support in Angular DOES NOT require any polyfills (as of Angular 6.0).
  **/
 // import 'web-animations-js';  // Run `npm install --save web-animations-js`.
@@ -69,7 +69,7 @@ import 'core-js/es7/reflect';
 // (window as any).__Zone_enable_cross_context_check = true;
 
 /***************************************************************************************************
- * Zone JS is required by default for Angular itself.
+ * Zone JS is iRequired by default for Angular itself.
  */
 import 'zone.js/dist/zone';  // Included with Angular CLI.
 

@@ -3,11 +3,11 @@ import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {AppComponent} from './app.component';
-import {NoteComponent} from './note/note.component';
+import {PartComponent} from './part/part.component';
 import {AppRoutingModule} from './app.routing.module';
-import {NoteService} from './note/note.service';
+import {PartService} from './part/part.service';
 import {HttpClientModule} from '@angular/common/http';
-import {AddNoteComponent} from './note/add-note.component';
+import {AddPartComponent} from './part/add-part.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TableListComponent} from './table-list/table-list.component';
 import {PaginationModule} from 'ngx-bootstrap';
@@ -24,17 +24,17 @@ import {
   MatSortModule,
   MatTableModule
 } from '@angular/material';
-import {EditNoteComponent} from './note/edit-note.component';
-import {EditNoteDialogComponent} from './note/edit-note-dialog.component';
+import {EditPartComponent} from './part/edit-part.component';
+import {EditPartDialogComponent} from './part/edit-part-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NoteComponent,
-    AddNoteComponent,
+    PartComponent,
+    AddPartComponent,
     TableListComponent,
-    EditNoteComponent,
-    EditNoteDialogComponent
+    EditPartComponent,
+    EditPartDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -56,8 +56,8 @@ import {EditNoteDialogComponent} from './note/edit-note-dialog.component';
     MatSelectModule,
     PaginationModule.forRoot()
   ],
-  providers: [NoteService],
+  providers: [PartService],
   bootstrap: [AppComponent],
-  entryComponents: [EditNoteDialogComponent]
+  entryComponents: [EditPartDialogComponent]
 })
 export class AppModule { }

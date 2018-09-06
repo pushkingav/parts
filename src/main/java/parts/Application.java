@@ -1,4 +1,4 @@
-package notes;
+package parts;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

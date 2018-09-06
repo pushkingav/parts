@@ -21,13 +21,13 @@
         </tr>
         <tr>
           <td><mat-form-field class="example-full-width">
-            <input matInput placeholder="Text" value="note.text" name="text" title="text" class="form-control" id="text">
+            <input matInput placeholder="Text" value="part.text" name="text" title="text" class="form-control" id="text">
           </mat-form-field></td>
         </tr>
         <tr>
           <td>
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="Date Created" value ="note.dateCreated" name="date_created" title="date_created" class="form-control" id="date_created">
+              <input matInput placeholder="Date Created" value ="part.dateCreated" name="date_created" title="date_created" class="form-control" id="date_created">
             </mat-form-field>
           </td>
         </tr>
@@ -36,7 +36,7 @@
     <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button (click)="editNote(note)" color="primary">Save</button>
+    <button mat-raised-button (click)="editNote(part)" color="primary">Save</button>
   </mat-card-actions>
 </mat-card>
 </body>

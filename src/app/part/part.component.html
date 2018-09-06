@@ -1,0 +1,58 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+
+  <mat-table #table [dataSource]="dataSource" class="example-table"
+             matSort matSortActive="id" matSortDirection="asc">
+
+    <!---     https://github.com/angular/material2/issues/10150
+    Part that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the part definition" -->
+
+    <!-- Title Column -->
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef>Наименование детали</mat-header-cell>
+      <mat-cell *matCellDef="let part">{{ part.title }}</mat-cell>
+    </ng-container>
+
+    <!-- Required Column -->
+    <ng-container matColumnDef="i_required">
+      <mat-header-cell *matHeaderCellDef>
+        <mat-form-field>
+          <mat-select [value]="1" placeholder="Фильтровать детали:">
+            <mat-option [value]=1>Все детали</mat-option>
+            <mat-option [value]=2>Необходимые</mat-option>
+            <mat-option [value]=3>Опциональные</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let part">
+        <mat-checkbox (click)="$event.stopPropagation()"
+                      (change)="setRequired(part)"
+                      [checked]="part.iRequired">
+        </mat-checkbox>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+      <mat-cell *matCellDef="let part">
+        <button mat-raised-button class="btn btn-danger btn-sm" (click)="deletePart(part)">Delete</button>
+        <button mat-raised-button class="btn btn-success btn-sm" (click)="openDialog(part)">Edit</button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator [length]="resultsLength" [pageSize]="10">
+  </mat-paginator>
+</div>
+
+
+<!-- Copyright 2018 Google Inc. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

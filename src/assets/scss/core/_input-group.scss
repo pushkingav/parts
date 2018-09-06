@@ -1,6 +1,6 @@
 // -----------------------------------------
 // input-group and input-group-addon styles
-//  note: form-groups are not required
+//  part: form-groups are not iRequired
 //
 @mixin input-group-button-variation($vertical-padding) {
   .input-group-btn {
@@ -10,7 +10,7 @@
   }
 }
 
-// default margin - no form-group required
+// default margin - no form-group iRequired
 @include input-group-button-variation(input-padding-y);
 
 .bmd-form-group-sm {

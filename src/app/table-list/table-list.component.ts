@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Note} from '../models/note.model';
+import {Part} from '../models/part.model';
 
 @Component({
   selector: 'app-table-list',
@@ -34,7 +34,7 @@ export class TableListComponent implements OnInit {
     className: ['table-striped', 'table-bordered']
   };
 
-  private data: Array<Note> = [];
+  private data: Array<Part> = [];
 
   public constructor() {
     this.length = this.data.length;
