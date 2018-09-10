@@ -13,7 +13,8 @@ import {EditPartDialogComponent} from './edit-part-dialog.component';
 })
 export class PartComponent implements AfterViewInit {
   parts: Part[];
-  displayedColumns = ['i_required', 'title', 'actions'];
+  displayedColumns = ['i_required', 'title', 'quantity', 'actions'];
+  footerColumns = ['name', 'quant'];
   partsDatabase: PartsHttpDao | null;
   dataSource = new MatTableDataSource();
   resultsLength = 0;
@@ -35,7 +36,8 @@ export class PartComponent implements AfterViewInit {
     const dialogRef = this.dialog.open(EditPartDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(changedPart => {
      part.title = changedPart.title;
-     part.iRequired = changedPart.required;
+     part.quantity = changedPart.quantity;
+     part.iRequired = changedPart.iRequired;
      this.partService.editPart(part).subscribe();
      });
   }
@@ -55,6 +57,11 @@ export class PartComponent implements AfterViewInit {
       .subscribe( data => {
         this.dataSource.data = this.dataSource.data.filter(u => u !== part);
       });
+  }
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
+    this.dataSource.filter = filterValue;
   }
   ngAfterViewInit() {
     this.partsDatabase = new PartsHttpDao(this.partService);

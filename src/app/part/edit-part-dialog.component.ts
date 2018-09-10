@@ -11,7 +11,8 @@ export class EditPartDialogComponent implements OnInit {
   part: Part;
   form: FormGroup;
   title: string;
-  required: boolean;
+  quantity: number;
+  iRequired: boolean;
 
   constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<EditPartDialogComponent>, @Inject(MAT_DIALOG_DATA) data) {
     this.part = data;
@@ -20,7 +21,8 @@ export class EditPartDialogComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       title: [this.part.title, []],
-      required: [this.part.iRequired, []]
+      quantity: [this.part.quantity, []],
+      iRequired: [this.part.iRequired, []]
     });
   }
 

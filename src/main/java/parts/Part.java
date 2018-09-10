@@ -13,10 +13,13 @@ public class Part {
   @Column
   private String title;
   @Column
+  private int quantity;
+  @Column
   private boolean iRequired;
 
-  public Part(String title, boolean iRequired) {
+  public Part(String title, int quantity, boolean iRequired) {
     this.title = title;
+    this.quantity = quantity;
     this.iRequired = iRequired;
   }
 
@@ -37,6 +40,14 @@ public class Part {
 
   public void setTitle(String title) {
     this.title = title;
+  }
+
+  public int getQuantity() {
+    return quantity;
+  }
+
+  public void setQuantity(int quantity) {
+    this.quantity = quantity;
   }
 
   public boolean isiRequired() {

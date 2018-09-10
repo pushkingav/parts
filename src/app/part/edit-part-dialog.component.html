@@ -2,13 +2,15 @@
 
 <mat-dialog-content [formGroup]="form">
   <mat-form-field>
-    <input matInput placeholder="Наименование детали:" formControlName="title">
+    <input matInput title="Наименование детали:" formControlName="title"> {{part.title}}
   </mat-form-field>
   <mat-form-field>
-    <mat-checkbox (click)="$event.stopPropagation()"
+    <input matInput title="Количество на складе:" formControlName="quantity"> {{part.quantity}}
+  </mat-form-field>
+  <mat-form-field>
+    <mat-checkbox title="Обязательна для сборки" (click)="$event.stopPropagation()"
                   (change)="changeRequired(part)"
-                  [checked]="part.iRequired"> formControlName="text"></mat-checkbox>
-
+                  [checked]="part.iRequired" formControlName="iRequired">Обязательна для сборки</mat-checkbox>
   </mat-form-field>
 </mat-dialog-content>
 

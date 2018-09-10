@@ -13,8 +13,20 @@
 
     <!-- Title Column -->
     <ng-container matColumnDef="title">
-      <mat-header-cell *matHeaderCellDef>Наименование детали</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>
+        Наименование детали
+        <mat-form-field class="mat-input-placeholder">
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Фильтр по имени">
+        </mat-form-field>
+      </mat-header-cell>
+
       <mat-cell *matCellDef="let part">{{ part.title }}</mat-cell>
+    </ng-container>
+
+    <!-- Quantity Column -->
+    <ng-container matColumnDef="quantity">
+      <mat-header-cell *matHeaderCellDef>Количество на складе</mat-header-cell>
+      <mat-cell *matCellDef="let part">{{ part.quantity }}</mat-cell>
     </ng-container>
 
     <!-- Required Column -->
@@ -44,8 +56,16 @@
       </mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="name">
+      <td mat-footer-cell *matFooterCellDef>Доступно к сборке: </td>
+    </ng-container>
+    <ng-container matColumnDef="quant">
+      <td mat-footer-cell *matFooterCellDef>5</td>
+    </ng-container>
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-footer-row *matFooterRowDef="footerColumns"></mat-footer-row>
   </mat-table>
 
   <mat-paginator [length]="resultsLength" [pageSize]="10">
