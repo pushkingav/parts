@@ -58,10 +58,25 @@ export class PartComponent implements AfterViewInit {
         this.dataSource.data = this.dataSource.data.filter(u => u !== part);
       });
   }
-  applyFilter(filterValue: string) {
+  applyTextFilter(filterValue: string) {
+    if (filterValue === 'true' || filterValue === 'false') {
+      return;
+    }
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;
+  }
+  applySelectFilter(filterValue: any) {
+    console.log(filterValue.value);
+    if (filterValue.value == 1) {
+      this.dataSource.filter = "";
+    }
+    if (filterValue.value == 2) {
+      this.dataSource.filter = "true";
+    }
+    if (filterValue.value == 3) {
+      this.dataSource.filter = "false";
+    }
   }
   ngAfterViewInit() {
     this.partsDatabase = new PartsHttpDao(this.partService);
@@ -70,12 +85,17 @@ export class PartComponent implements AfterViewInit {
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    /*this.dataSource.sortingDataAccessor = (part: Note, property) => {
-      switch (property) {
-        case 'date_created': return new Date(part.dateCreated);
-        default: return part[property];
+
+    this.dataSource.filterPredicate = (data: Part, filter) => {
+      //predicate concatenates the title and iRequired fields
+      let temp: string;
+      temp = data.title.toLowerCase();
+      if (filter === 'true' || filter === 'false') {
+        temp = temp + data.iRequired;
       }
-    };*/
+      return temp.indexOf(filter) !== -1;
+    };
+
 
     merge()
       .pipe(

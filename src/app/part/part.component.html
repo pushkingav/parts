@@ -16,7 +16,7 @@
       <mat-header-cell *matHeaderCellDef>
         Наименование детали
         <mat-form-field class="mat-input-placeholder">
-          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Фильтр по имени">
+          <input matInput (keyup)="applyTextFilter($event.target.value)" placeholder="Фильтр по имени">
         </mat-form-field>
       </mat-header-cell>
 
@@ -33,7 +33,7 @@
     <ng-container matColumnDef="i_required">
       <mat-header-cell *matHeaderCellDef>
         <mat-form-field>
-          <mat-select [value]="1" placeholder="Фильтровать детали:">
+          <mat-select [value]="1" placeholder="Фильтровать детали:" (selectionChange)="applySelectFilter($event)">
             <mat-option [value]=1>Все детали</mat-option>
             <mat-option [value]=2>Необходимые</mat-option>
             <mat-option [value]=3>Опциональные</mat-option>
