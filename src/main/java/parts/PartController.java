@@ -37,4 +37,9 @@ public class PartController {
     return partService.findAll();
   }
 
+  @GetMapping(path = "/instock")
+  public Integer getInStockCount() {
+    return partService.getInStockCount();
+  }
+
 }

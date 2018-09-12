@@ -19,6 +19,7 @@ export class PartComponent implements AfterViewInit {
   dataSource = new MatTableDataSource();
   resultsLength = 0;
   isLoadingResults = false;
+  inStockCount: any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -115,13 +116,18 @@ export class PartComponent implements AfterViewInit {
           return observableOf([]);
         })
       ).subscribe(data => this.dataSource.data = data);
+
+    this.partService.getInStockCount()
+      .subscribe( data => {
+        console.log(data);
+        this.inStockCount = data;
+      });
   }
 }
 
 export class PartsHttpDao {
   constructor(private partService: PartService) {}
   getRepoParts(): Observable<Part[]> {
-    console.log(this.partService.getParts());
     return this.partService.getParts();
   }
 }

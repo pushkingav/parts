@@ -38,4 +38,9 @@ public class PartServiceImpl implements PartService {
   public List<Part> findAll() {
     return repository.findAll();
   }
+
+  @Override
+  public Integer getInStockCount() {
+    return repository.inStockCount();
+  }
 }

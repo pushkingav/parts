@@ -29,4 +29,8 @@ export class PartService {
   public editPart(part) {
     return this.http.put<Part>(this.partsUrl, part);
   }
+
+  public getInStockCount() {
+    return this.http.get(this.partsUrl + '/instock')
+  }
 }

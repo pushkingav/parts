@@ -60,7 +60,7 @@
       <td mat-footer-cell *matFooterCellDef>Доступно к сборке: </td>
     </ng-container>
     <ng-container matColumnDef="quant">
-      <td mat-footer-cell *matFooterCellDef>5</td>
+      <td mat-footer-cell *matFooterCellDef>{{inStockCount}}</td>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

@@ -8,4 +8,5 @@ public interface PartService {
   Part update(Part part);
   Part delete(int id);
   List<Part> findAll();
+  Integer getInStockCount();
 }
