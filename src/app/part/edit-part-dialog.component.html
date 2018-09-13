@@ -7,14 +7,12 @@
   <mat-form-field>
     <input matInput title="Количество на складе:" formControlName="quantity"> {{part.quantity}}
   </mat-form-field>
-  <mat-form-field>
-    <mat-checkbox title="Обязательна для сборки" (click)="$event.stopPropagation()"
+    <mat-checkbox (click)="$event.stopPropagation()"
                   (change)="changeRequired(part)"
-                  [checked]="part.iRequired" formControlName="iRequired">Обязательна для сборки</mat-checkbox>
-  </mat-form-field>
+                  [checked]="part.iRequired" formControlName="iRequired"></mat-checkbox>
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <button class="mat-raised-button"(click)="close()">Close</button>
-  <button class="mat-raised-button mat-primary"(click)="save()">Save</button>
+  <button class="mat-raised-button"(click)="close()">Отмена</button>
+  <button class="mat-raised-button mat-primary"(click)="save()">Сохранить</button>
 </mat-dialog-actions>

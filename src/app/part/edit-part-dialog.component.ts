@@ -4,7 +4,7 @@ import {Part} from '../models/part.model';
 import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
-  selector: 'edit-note-dialog',
+  selector: 'edit-part-dialog',
   templateUrl: './edit-part-dialog.component.html'
 })
 export class EditPartDialogComponent implements OnInit {
@@ -34,6 +34,7 @@ export class EditPartDialogComponent implements OnInit {
     this.dialogRef.close();
   }
   changeRequired(part: Part) {
-    part.iRequired = !part.iRequired;
+    //part.iRequired = !part.iRequired;
+    this.part.iRequired = !this.part.iRequired;
   }
 }
