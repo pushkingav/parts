@@ -39,7 +39,9 @@ export class PartComponent implements AfterViewInit {
      part.title = changedPart.title;
      part.quantity = changedPart.quantity;
      part.iRequired = changedPart.iRequired;
-     this.partService.editPart(part).subscribe();
+     this.partService.editPart(part).subscribe(() => {
+       this.partService.getInStockCount().subscribe(data => this.inStockCount = data);
+     });
      });
   }
 
@@ -51,7 +53,10 @@ export class PartComponent implements AfterViewInit {
   }*/
   setRequired(part: Part) {
     part.iRequired = !part.iRequired;
-    this.partService.editPart(part).subscribe();
+    this.partService.editPart(part).subscribe(() => {
+      this.partService.getInStockCount().subscribe(data => this.inStockCount = data);
+    });
+
   }
   deletePart(part: Part): void {
     this.partService.deletePart(part)
