@@ -22,7 +22,8 @@ import {
   MatProgressSpinnerModule,
   MatSelectModule,
   MatSortModule,
-  MatTableModule
+  MatTableModule,
+  MatToolbarModule
 } from '@angular/material';
 import {EditPartComponent} from './part/edit-part.component';
 import {EditPartDialogComponent} from './part/edit-part-dialog.component';
@@ -54,6 +55,7 @@ import {EditPartDialogComponent} from './part/edit-part-dialog.component';
     MatInputModule,
     MatDialogModule,
     MatSelectModule,
+    MatToolbarModule,
     PaginationModule.forRoot()
   ],
   providers: [PartService],

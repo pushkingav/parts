@@ -73,7 +73,7 @@ export class PartComponent implements AfterViewInit {
     this.dataSource.filter = filterValue;
   }
   applySelectFilter(filterValue: any) {
-    console.log(filterValue.value);
+    this.paginator.pageIndex = 0
     if (filterValue.value == 1) {
       this.dataSource.filter = "";
     }

@@ -2,10 +2,10 @@
 
 <mat-dialog-content [formGroup]="form">
   <mat-form-field>
-    <input matInput title="Наименование детали:" formControlName="title"> {{part.title}}
+    <input matInput title="Наименование детали:" formControlName="title">
   </mat-form-field>
   <mat-form-field>
-    <input matInput title="Количество на складе:" formControlName="quantity"> {{part.quantity}}
+    <input matInput title="Количество на складе:" formControlName="quantity">
   </mat-form-field>
     <mat-checkbox (click)="$event.stopPropagation()"
                   (change)="changeRequired(part)"
@@ -13,6 +13,6 @@
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <button class="mat-raised-button"(click)="close()">Отмена</button>
   <button class="mat-raised-button mat-primary"(click)="save()">Сохранить</button>
+  <button class="mat-raised-button"(click)="close()">Отмена</button>
 </mat-dialog-actions>
