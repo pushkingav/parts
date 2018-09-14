@@ -5,17 +5,18 @@
   </div>
   <mat-toolbar color="primary">
     <mat-toolbar-row>
-      <!--img src="./assets/img/computer-logo_sm.png"!-->
-      <span class="example-fill-remaining-space"></span>
-      <span class="align-center"></span>
-      <span class="example-spacer"></span>
+      <span><img src="./assets/img/computer-logo_sm.png"></span>
+      <!--<span class="example-fill-remaining-space"></span>-->
+      <!--<span class="align-center"></span>-->
+      <!--<span class="example-spacer"></span>-->
+
 
       <button class="mat-raised-button"[routerLink]="['/parts']">Список запчастей</button>
       <button class="mat-raised-button"[routerLink]="['/add']">Добавить запчать</button>
     </mat-toolbar-row>
   </mat-toolbar>
 
-  <mat-table #table [dataSource]="dataSource" class="example-table"
+  <mat-table #table [dataSource]="dataSource"
              matSort matSortActive="id" matSortDirection="asc">
 
     <!---     https://github.com/angular/material2/issues/10150
@@ -24,13 +25,7 @@
 
     <!-- Title Column -->
     <ng-container matColumnDef="title">
-      <mat-header-cell *matHeaderCellDef>
-        Наименование детали
-        <mat-form-field class="mat-input-placeholder">
-          <input matInput (keyup)="applyTextFilter($event.target.value)" placeholder="Фильтр по имени">
-        </mat-form-field>
-      </mat-header-cell>
-
+      <mat-header-cell *matHeaderCellDef style="">Наименование детали</mat-header-cell>
       <mat-cell *matCellDef="let part">{{ part.title }}</mat-cell>
     </ng-container>
 
@@ -42,15 +37,7 @@
 
     <!-- Required Column -->
     <ng-container matColumnDef="i_required">
-      <mat-header-cell *matHeaderCellDef>
-        <mat-form-field>
-          <mat-select [value]="1" placeholder="Фильтровать детали:" (selectionChange)="applySelectFilter($event)">
-            <mat-option [value]=1>Все детали</mat-option>
-            <mat-option [value]=2>Необходимые</mat-option>
-            <mat-option [value]=3>Опциональные</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Обязательна для сборки</mat-header-cell>
       <mat-cell *matCellDef="let part">
         <mat-checkbox (click)="$event.stopPropagation()"
                       (change)="setRequired(part)"
@@ -68,12 +55,33 @@
     </ng-container>
 
     <ng-container matColumnDef="name">
-      <td mat-footer-cell *matFooterCellDef>Доступно к сборке: </td>
+      <td mat-footer-cell *matFooterCellDef>Можно собрать комплектов:</td>
     </ng-container>
     <ng-container matColumnDef="quant">
-      <td mat-footer-cell *matFooterCellDef>{{inStockCount}}</td>
+      <td mat-footer-cell *matFooterCellDef style="padding-left: 10px">{{inStockCount}}</td>
     </ng-container>
 
+    <ng-container matColumnDef="name-filter">
+      <mat-header-cell *matHeaderCellDef>
+        <mat-form-field class="mat-input-placeholder">
+          <input matInput (keyup)="applyTextFilter($event.target.value)" placeholder="Фильтр по имени">
+        </mat-form-field>
+      </mat-header-cell>
+    </ng-container>
+    <ng-container matColumnDef="optional-filter">
+      <mat-header-cell *matHeaderCellDef>
+        <mat-form-field>
+          <mat-select [value]="1" placeholder="Фильтровать детали:" (selectionChange)="applySelectFilter($event)">
+            <mat-option [value]=1>Все детали</mat-option>
+            <mat-option [value]=2>Необходимые</mat-option>
+            <mat-option [value]=3>Опциональные</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-header-cell>
+    </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="['optional-filter', 'name-filter']"></mat-header-row>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     <mat-footer-row *matFooterRowDef="footerColumns"></mat-footer-row>

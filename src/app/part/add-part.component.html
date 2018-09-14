@@ -9,14 +9,14 @@
   <h2 class="text-center">Добавить запчасть</h2>
   <form>
     <div class="form-group">
-      <label for="title">Наименование запчасти:</label>
+      <!--label for="title">Наименование запчасти:</label!-->
       <input name="title" [(ngModel)]="part.title" placeholder="Наименование запчасти" title="title" class="form-control" id="title">
     </div>
 
-    <div class="form-group">
+    <!--<div class="form-group">-->
       <label for="iRequired">Обязательна для сборки:</label>
       <input type="checkbox" name = "text" [(ngModel)]="part.iRequired" title="iRequired" class="form-control" id="iRequired">
-    </div>
+    <!--</div>-->
 
     <button class="btn btn-success" (click)="createPart()">Создать</button>
   </form>
