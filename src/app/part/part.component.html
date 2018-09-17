@@ -5,14 +5,15 @@
   </div>
   <mat-toolbar color="primary">
     <mat-toolbar-row>
-      <span><img src="./assets/img/computer-logo_sm.png"></span>
+      <div><img style="max-width: 50%;
+    max-height: 50%;" src="./assets/img/computer-logo_sm.png"></div>
       <!--<span class="example-fill-remaining-space"></span>-->
       <!--<span class="align-center"></span>-->
       <!--<span class="example-spacer"></span>-->
 
 
-      <button class="mat-raised-button"[routerLink]="['/parts']">Список запчастей</button>
-      <button class="mat-raised-button"[routerLink]="['/add']">Добавить запчать</button>
+      <button class="mat-button"[routerLink]="['/parts']">Список запчастей</button>
+      <button class="mat-button"[routerLink]="['/add']">Добавить запчать</button>
     </mat-toolbar-row>
   </mat-toolbar>
 

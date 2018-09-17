@@ -1,4 +1,21 @@
 CREATE SCHEMA test CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 use test;
 DROP TABLE IF EXISTS PARTS;
-CREATE TABLE PARTS (id INTEGER AUTO_INCREMENT PRIMARY KEY, title VARCHAR(150) NOT NULL, i_required tinyint(1)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE TABLE PARTS (id INTEGER AUTO_INCREMENT PRIMARY KEY, title VARCHAR(150) NOT NULL UNIQUE, quantity INTEGER, i_required tinyint(1))
+DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+INSERT INTO PARTS (title, quantity, i_required) values  ('Материнская плата', 2, 1);
+INSERT INTO PARTS (title, quantity, i_required) values  ('SSD-диск, 256Gb', 5, 1);
+INSERT INTO PARTS (title, quantity, i_required) values  ('Оперативная память', 3, 1);
+INSERT INTO PARTS (title, quantity, i_required) values  ('Видеокарта', 1, 0);
+INSERT INTO PARTS (title, quantity, i_required) values  ('Звуковая карта', 4, 0);
+INSERT INTO PARTS (title, quantity, i_required) values  ('CD-ROM', 0, 0);
+INSERT INTO PARTS (title, quantity, i_required) values  ('DVD-RW', 10, 0);
+INSERT INTO PARTS (title, quantity, i_required) values  ('Card Reader', 15, 0);
+INSERT INTO PARTS (title, quantity, i_required) values  ('FDD', 0, 0);
+INSERT INTO PARTS (title, quantity, i_required) values  ('Корпус', 21, 1);
+INSERT INTO PARTS (title, quantity, i_required) values  ('Процессор', 14, 1);
+INSERT INTO PARTS (title, quantity, i_required) values  ('Шлейф SATA', 15, 1);
+INSERT INTO PARTS (title, quantity, i_required) values  ('Кулер процессора', 2, 1);
+INSERT INTO PARTS (title, quantity, i_required) values  ('HDD, 1Gb', 7, 0);
+INSERT INTO PARTS (title, quantity, i_required) values  ('Вентилятор', 3, 0);
+COMMIT;

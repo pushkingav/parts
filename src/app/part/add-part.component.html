@@ -2,24 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
 </head>
 <body>
-<div class="col-md-6">
-  <h2 class="text-center">Добавить запчасть</h2>
-  <form>
-    <div class="form-group">
-      <!--label for="title">Наименование запчасти:</label!-->
-      <input name="title" [(ngModel)]="part.title" placeholder="Наименование запчасти" title="title" class="form-control" id="title">
-    </div>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <div><img style="max-width: 50%;
+    max-height: 50%;" src="./assets/img/computer-logo_sm.png"></div>
+    <!--<span class="example-fill-remaining-space"></span>-->
+    <!--<span class="align-center"></span>-->
+    <!--<span class="example-spacer"></span>-->
 
-    <!--<div class="form-group">-->
-      <label for="iRequired">Обязательна для сборки:</label>
-      <input type="checkbox" name = "text" [(ngModel)]="part.iRequired" title="iRequired" class="form-control" id="iRequired">
-    <!--</div>-->
 
-    <button class="btn btn-success" (click)="createPart()">Создать</button>
-  </form>
-</div>
+    <button class="mat-button"[routerLink]="['/parts']">Список запчастей</button>
+    <button class="mat-button"[routerLink]="['/add']">Добавить запчать</button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Добавить запчасть</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="example-form">
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Наименование запчасти" [(ngModel)]="part.title" name="part.title" required>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td><mat-form-field class="example-full-width">
+            <input matInput placeholder="Количество на складе" [(ngModel)]="part.quantity" name="part.title">
+          </mat-form-field></td>
+        </tr>
+        <tr>
+          <td><mat-checkbox (click)="$event.stopPropagation()"
+                             [(ngModel)]="part.iRequired" name="iRequired"></mat-checkbox></td>
+        </tr>
+      </table>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="createPart()" color="primary">Создать</button>
+  </mat-card-actions>
+</mat-card>
+
+
 </body>
 </html>

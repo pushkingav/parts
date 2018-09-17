@@ -18,6 +18,7 @@ export class AddPartComponent {
   createPart(): void {
     this.partService.createPart(this.part)
       .subscribe( data => {
+        console.log(this.part);
         alert('Part created successfully.');
       });
   }
