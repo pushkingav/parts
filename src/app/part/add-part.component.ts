@@ -5,7 +5,8 @@ import {Part} from '../models/part.model';
 import {PartService} from './part.service';
 
 @Component({
-  templateUrl: './add-part.component.html'
+  templateUrl: './add-part.component.html',
+  styleUrls: ['./add-part.component.css']
 })
 export class AddPartComponent {
 

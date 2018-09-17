@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-</head>
-<body>
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <div><img style="max-width: 50%;
     max-height: 50%;" src="./assets/img/computer-logo_sm.png"></div>
-    <!--<span class="example-fill-remaining-space"></span>-->
-    <!--<span class="align-center"></span>-->
-    <!--<span class="example-spacer"></span>-->
+    <!--<span class="example-fill-remaining-space"></span>
+    <span class="align-center"></span>
+    <span class="example-spacer"></span>-->
 
 
     <button class="mat-button"[routerLink]="['/parts']">Список запчастей</button>
@@ -44,10 +38,7 @@
     </form>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button (click)="createPart()" color="primary">Создать</button>
+    <button mat-raised-button class="btn btn-success btn-sm"(click)="createPart()" color="primary">Создать</button>
+    <button mat-raised-button class="btn btn-info btn-sm" [routerLink]="['/parts']" color="primary">Отмена</button>
   </mat-card-actions>
 </mat-card>
-
-
-</body>
-</html>
