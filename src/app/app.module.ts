@@ -9,7 +9,6 @@ import {PartService} from './part/part.service';
 import {HttpClientModule} from '@angular/common/http';
 import {AddPartComponent} from './part/add-part.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {TableListComponent} from './table-list/table-list.component';
 import {PaginationModule} from 'ngx-bootstrap';
 import {
   MatCardModule,
@@ -25,7 +24,6 @@ import {
   MatTableModule,
   MatToolbarModule
 } from '@angular/material';
-import {EditPartComponent} from './part/edit-part.component';
 import {EditPartDialogComponent} from './part/edit-part-dialog.component';
 
 @NgModule({
@@ -33,8 +31,6 @@ import {EditPartDialogComponent} from './part/edit-part-dialog.component';
     AppComponent,
     PartComponent,
     AddPartComponent,
-    TableListComponent,
-    EditPartComponent,
     EditPartDialogComponent
   ],
   imports: [
