@@ -1,18 +1,26 @@
 <h2 mat-dialog-title>Редактирование детали - {{part.title}}</h2>
 
-<mat-dialog-content [formGroup]="form">
+<mat-dialog-content [formGroup]="form" (ngSubmit) = "save()">
   <mat-form-field>
-    <input matInput title="Наименование детали:" formControlName="title">
+    <input matInput name="title" title="Наименование детали:" formControlName="title" required>
+    <mat-error>
+      <span *ngIf="!form.get('title').valid">Пожалуйста, введите наименование</span>
+    </mat-error>
   </mat-form-field>
   <mat-form-field>
-    <input matInput title="Количество на складе:" formControlName="quantity">
+    <input matInput name="quantity" title="Количество на складе:" formControlName="quantity">
+    <mat-error>
+      <span *ngIf="!form.get('quantity').valid">Количество должно быть числом</span>
+    </mat-error>
   </mat-form-field>
+
+
     <mat-checkbox (click)="$event.stopPropagation()"
                   (change)="changeRequired(part)"
                   [checked]="part.iRequired" formControlName="iRequired"></mat-checkbox>
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <button class="mat-raised-button mat-primary"(click)="save()">Сохранить</button>
+  <button class="mat-raised-button mat-primary" [disabled]="!form.valid" (click)="save()">Сохранить</button>
   <button class="mat-raised-button"(click)="close()">Отмена</button>
 </mat-dialog-actions>

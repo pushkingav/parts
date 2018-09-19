@@ -11,6 +11,7 @@ import {AddPartComponent} from './part/add-part.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {PaginationModule} from 'ngx-bootstrap';
 import {
+  ErrorStateMatcher,
   MatCardModule,
   MatCheckboxModule,
   MatDialogModule,
@@ -22,7 +23,8 @@ import {
   MatSelectModule,
   MatSortModule,
   MatTableModule,
-  MatToolbarModule
+  MatToolbarModule,
+  ShowOnDirtyErrorStateMatcher
 } from '@angular/material';
 import {EditPartDialogComponent} from './part/edit-part-dialog.component';
 
@@ -54,7 +56,7 @@ import {EditPartDialogComponent} from './part/edit-part-dialog.component';
     MatToolbarModule,
     PaginationModule.forRoot()
   ],
-  providers: [PartService],
+  providers: [PartService, {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher} ],
   bootstrap: [AppComponent],
   entryComponents: [EditPartDialogComponent]
 })

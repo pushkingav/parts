@@ -1,7 +1,7 @@
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {Component, Inject, OnInit} from '@angular/core';
 import {Part} from '../models/part.model';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'edit-part-dialog',
@@ -20,8 +20,8 @@ export class EditPartDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      title: [this.part.title, []],
-      quantity: [this.part.quantity, []],
+      title: [this.part.title, [Validators.required]],
+      quantity: [this.part.quantity, [Validators.compose([Validators.pattern("^\\d+$"), Validators.required])]],
       iRequired: [this.part.iRequired, []]
     });
   }
