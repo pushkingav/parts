@@ -15,8 +15,7 @@
 должны быть в наличии все детали, которые отмечены как необходимые.
 
 **Для запуска:**
-1. Пре-реквизиты: Maven, npm, Angular-CLI, mysql. Все про пре-реквизиты более-менее описано тут: https://www.devglan
-.com/angular/angular-data-table-example
+1. Пре-реквизиты: Maven, npm, Angular-CLI, mysql. Все про пре-реквизиты более-менее описано тут: https://www.devglan.com/angular/angular-data-table-example
 2. Импортировать проект в idea.
 3. Создать базу скриптом ./create_parts_database.sql. Использовал mysql. Пользователь root, пароль root, база test.
 4. Выполнить ./parts/mvn clean compile
